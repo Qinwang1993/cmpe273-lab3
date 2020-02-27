@@ -1,0 +1,37 @@
+
+
+type Students {
+    id: ID!
+    name: String!
+}
+
+type Classes {
+    id: ID!
+    name: String!
+    students: [Students]
+}
+
+type Mutation {
+    createStudent(name: String!): StudentPayload!
+    createClass(name: String!): ClassPayload!
+    addStudentToClass(student_id: Int!, class_id: Int!): ClassPayload!
+}
+
+type Query {
+    allstudents: [Students]
+    students(id: Int): Students
+    allclasses: [Classes]
+    classes(id: Int): Classes
+}
+
+type StudentPayload {
+    status: Boolean!
+    error: String
+    student: Students
+}
+
+type ClassPayload {
+    status: Boolean!
+    error: String
+    class: Classes
+}
